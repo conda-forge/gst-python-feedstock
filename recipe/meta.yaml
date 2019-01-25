@@ -13,7 +13,7 @@ source:
     - python-ldflags.patch  # [osx and py>=30]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
