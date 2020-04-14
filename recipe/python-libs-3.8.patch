@@ -1,0 +1,33 @@
+--- configure	2020-02-12 14:20:39.133366485 +0000
++++ configure	2020-02-12 14:20:59.213033878 +0000
+@@ -14462,28 +14462,8 @@
+ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for libraries required to embed python" >&5
+ $as_echo_n "checking for libraries required to embed python... " >&6; }
+
+-if $PYTHON-config --help 1>/dev/null 2>/dev/null; then
+-  PYTHON_LIBS=`$PYTHON-config --ldflags 2>/dev/null`
+-  PYTHON_LIB=`$PYTHON -c "import distutils.sysconfig as s; print(s.get_python_lib(standard_lib=1))"`
+-  if echo "$host_os" | grep darwin >/dev/null 2>&1; then
+-                PYTHON_LIB_LOC=/usr/lib
+-  else
+-    PYTHON_LIB_LOC=$PYTHON_LIB/config
+-
+-    # default to prefix/lib for distros that don't have a link in
+-    # .../pythonX.Y/config/
+-    if test ! -e $PYTHON_LIB_LOC/libpython${PYTHON_VERSION}${PYTHON_ABI_FLAGS}.so; then
+-      if test -e ${py_prefix}/lib64/libpython${PYTHON_VERSION}${PYTHON_ABI_FLAGS}.so; then
+-        PYTHON_LIB_LOC=${py_prefix}/lib64
+-      else
+-        PYTHON_LIB_LOC=${py_prefix}/lib
+-      fi
+-    fi
+-  fi
+-else
+-  PYTHON_LIBS="-L${py_prefix}/lib -lpython${PYTHON_VERSION}"
+-  PYTHON_LIB_LOC="${py_prefix}/lib"
+-fi
++PYTHON_LIBS="-L${py_prefix}/lib -lpython${PYTHON_VERSION}"
++PYTHON_LIB_LOC="${py_prefix}/lib"
+
+
+ # Check whether --with-libpython-dir was given.
