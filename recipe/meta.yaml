@@ -15,7 +15,7 @@ source:
     - python-libs-3.8.patch  # [py>=38]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
