@@ -37,9 +37,9 @@ requirements:
     - {{ cdt('expat') }}                 # [linux]
     - {{ cdt('libselinux-devel') }}      # [linux]
     - pkg-config
-    - meson
     - ninja
   host:
+    - meson
     - gstreamer
     - gst-plugins-base
     - glib
