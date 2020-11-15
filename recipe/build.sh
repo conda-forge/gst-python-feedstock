@@ -9,6 +9,7 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/
 
 meson_options=(
       -Dpython=$PYTHON
+      -Dlibpython-dir=$PREFIX/lib
 )
 
 meson --prefix=$PREFIX \
