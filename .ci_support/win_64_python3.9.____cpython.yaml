@@ -9,7 +9,7 @@ cxx_compiler:
 glib:
 - '2.58'
 gst_plugins_base:
-- 1.14.4
+- '1.18'
 gstreamer:
 - '1.18'
 pin_run_as_build:
