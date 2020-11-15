@@ -1,6 +1,6 @@
 {% set name = "gst-python" %}
-{% set version = "1.14.5" %}
-{% set sha256 = "18afc00a2d67e6c1bae172241ac2521b3c2cc74b8b0273433e71edc9572add5a" %}
+{% set version = "1.18.1" %}
+{% set sha256 = "42b289422f7ab32757670848cf2245c5a8a8b08a665a9cab65ded8d69364f6f6" %}
 
 package:
   name: "{{ name|lower }}"
@@ -9,35 +9,53 @@ package:
 source:
   url: "https://gstreamer.freedesktop.org/src/{{ name }}/{{ name }}-{{ version }}.tar.xz"
   sha256: "{{ sha256 }}"
-  patches:
-    - python-ldflags.patch  # [osx and py>=30 and py<38]
-    # for python3.8 and above, just use -lpython3.8
-    - python-libs-3.8.patch  # [py>=38]
 
 build:
-  number: 1
-  skip: true  # [win]
+  number: 0
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - make  # [unix]
-    - pkg-config  # [unix]
+    - {{ cdt('libxau-devel') }}          # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxrender-devel') }}      # [linux]
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('libdrm-devel') }}          # [linux]
+    - {{ cdt('libxdamage-devel') }}      # [linux]
+    - {{ cdt('libxfixes-devel') }}       # [linux]
+    - {{ cdt('libxxf86vm-devel') }}      # [linux]
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+    # These dependencies are only for cos7 platforms
+    - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
+    - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
+    - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
+    - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
+    # expat here is _only_ required for mesa-dri-drivers
+    - {{ cdt('expat') }}                 # [linux]
+    - {{ cdt('libselinux-devel') }}      # [linux]
+    - pkg-config
+    - meson
+    - ninja
   host:
+    - gstreamer
+    - gst-plugins-base
     - glib
-    - gstreamer {{ version }}
-    - pygobject
+    - libxcb                             # [linux]
     - python
+    - pygobject
   run:
-    - glib
-    - pygobject
+    - {{ pin_compatible('gstreamer') }}
+    - {{ pin_compatible('gst-plugins-base') }}
     - python
+    - pygobject
 
 test:
-  imports:
-    - gi.repository.Gst
   commands:
-    - python -c "import gi; gi.require_version('Gst', '1.0')"
+    - test -f $PREFIX/lib/gstreamer-1.0/libgstpython${SHLIB_EXT}  # [unix]
+    - if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstpython.dll exit 1  # [win]
+    - gst-inspect-1.0 --plugin python
 
 about:
   home: "http://gstreamer.freedesktop.org/modules/gst-python.html"
