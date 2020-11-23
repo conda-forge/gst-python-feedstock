@@ -9,6 +9,9 @@ package:
 source:
   url: "https://gstreamer.freedesktop.org/src/{{ name }}/{{ name }}-{{ version }}.tar.xz"
   sha256: "{{ sha256 }}"
+  patches:
+    # see https://gitlab.freedesktop.org/gstreamer/gst-python/-/merge_requests/41
+    - 3e752ede7ed6261681ef3831bc3dbb594f189e76.patch
 
 build:
   number: 0
