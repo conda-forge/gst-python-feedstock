@@ -215,4 +215,5 @@ Feedstock Maintainers
 =====================
 
 * [@duncanmmacleod](https://github.com/duncanmmacleod/)
+* [@tschoonj](https://github.com/tschoonj/)
 
