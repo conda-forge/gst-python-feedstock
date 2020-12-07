@@ -1,13 +1,23 @@
 #!/bin/bash
 
-# conda-forge/conda-forge.github.io#621
-find ${PREFIX} -name "*.la" -delete
+set -e -x
 
-# configure using PYTHON=pythonX.Y to get correct includes path
-./configure \
-	PYTHON=${PYTHON}${PY_VER} \
-	--prefix=${PREFIX}
+mkdir build
+pushd build
 
-# make and install
-make -j${CPU_COUNT} ${VERBOSE_AT}
-make install
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/pkgconfig
+
+meson_options=(
+      -Dpython=$PYTHON
+      -Dlibpython-dir=$PREFIX/lib
+)
+
+meson --prefix=$PREFIX \
+      --libdir=$PREFIX/lib \
+      --buildtype=release \
+      --wrap-mode=nofallback \
+      "${meson_options[@]}" \
+      ..
+ninja -j${CPU_COUNT} -v
+ninja install
+
