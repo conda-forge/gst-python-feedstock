@@ -5,19 +5,20 @@ set -e -x
 mkdir build
 pushd build
 
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$PREFIX/lib/pkgconfig:$BUILD_PREFIX/lib/pkgconfig
+export PKG_CONFIG="${BUILD_PREFIX}/bin/pkg-config"
 
-meson_options=(
-      -Dpython=$PYTHON
-      -Dlibpython-dir=$PREFIX/lib
-)
+meson \
+	${SRC_DIR} \
+	${MESON_ARGS} \
+	-Dlibdir=lib \
+	-Dlibpython-dir="${PREFIX}/lib" \
+	-Dpython="${PYTHON}" \
+	--prefix="${PREFIX}" \
+	--wrap-mode=nofallback \
+;
 
-meson --prefix=$PREFIX \
-      --libdir=$PREFIX/lib \
-      --buildtype=release \
-      --wrap-mode=nofallback \
-      "${meson_options[@]}" \
-      ..
+# build
 ninja -j${CPU_COUNT} -v
-ninja install
 
+# install
+ninja install

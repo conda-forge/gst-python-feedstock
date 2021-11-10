@@ -14,10 +14,17 @@ source:
     - 3e752ede7ed6261681ef3831bc3dbb594f189e76.patch
 
 build:
+  ignore_run_exports:
+    # required by meson, but not actually used
+    - gst-plugins-base
+    - libcxx  # [osx]
+    - libstdcxx-ng  # [linux]
   number: 1
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('libxau-devel') }}          # [linux]
