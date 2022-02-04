@@ -2,6 +2,10 @@
 {% set version = "1.20.0" %}
 {% set sha256 = "8f67bdc5606ba33606c6bc896e89de7dcd8cf4fca459f71389b1b6fe075b5e54" %}
 
+# handle GST versions
+{% set version_arr = version.split(".") %}
+{% set gst_version = ".".join((version_arr[0], version_arr[1])) %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -52,12 +56,12 @@ requirements:
     - meson !=0.56.*  # [win]
     - ninja
   host:
-    - gstreamer
-    - gst-plugins-base
+    - gstreamer {{ gst_version }}
+    - gst-plugins-base {{ gst_version }}
     - glib
     - libxcb                             # [linux]
     - python
-    - pygobject
+    - pygobject >=3.8
   run:
     - {{ pin_compatible('gstreamer') }}
     - {{ pin_compatible('gst-plugins-base') }}
