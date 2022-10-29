@@ -23,7 +23,7 @@ build:
     - gst-plugins-base
     - libcxx  # [osx]
     - libstdcxx-ng  # [linux]
-  number: 2
+  number: 3
 
 requirements:
   build:
