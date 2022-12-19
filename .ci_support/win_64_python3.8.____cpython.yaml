@@ -9,7 +9,9 @@ cxx_compiler:
 glib:
 - '2'
 gst_plugins_base:
-- '1.18'
+- '1.21'
+gstreamer:
+- '1.21'
 pin_run_as_build:
   python:
     min_pin: x.x
