@@ -59,7 +59,6 @@ requirements:
     - gstreamer {{ gst_version }}
     - gst-plugins-base {{ gst_version }}
     - glib
-    - libxcb                             # [linux]
     - python
     - pygobject >=3.8
   run:
