@@ -1,4 +1,0 @@
-gstreamer:
-  - 1.18
-gst_plugins_base:
-  - 1.18
