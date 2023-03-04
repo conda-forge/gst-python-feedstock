@@ -1,11 +1,11 @@
-About gst-python
-================
+About gst-python-feedstock
+==========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gst-python-feedstock/blob/main/LICENSE.txt)
 
 Home: http://gstreamer.freedesktop.org/modules/gst-python.html
 
 Package license: LGPL-2.1-or-later
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gst-python-feedstock/blob/main/LICENSE.txt)
 
 Summary: GStreamer Python binding overrides
 
