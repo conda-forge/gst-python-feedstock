@@ -23,7 +23,7 @@ build:
     - gst-plugins-base
     - libcxx  # [osx]
     - libstdcxx-ng  # [linux]
-  number: 0
+  number: 1
   skip: true  # [python_impl != 'cpython']
 
 requirements:
@@ -63,6 +63,7 @@ requirements:
     - glib
     - python
     - pygobject >=3.8
+    - setuptools
   run:
     - {{ pin_compatible('gstreamer') }}
     - {{ pin_compatible('gst-plugins-base') }}
