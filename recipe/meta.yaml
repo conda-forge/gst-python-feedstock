@@ -1,6 +1,6 @@
 {% set name = "gst-python" %}
-{% set version = "1.22.6" %}
-{% set sha256 = "51de2d6d13b12ce095eac97c0b94ee59c2aeba3712bb7462b78c4d57dde176c5" %}
+{% set version = "1.22.7" %}
+{% set sha256 = "1ef8df7608012fa469329799c950ec087737a6dabad3003c230658b58c710172" %}
 
 # handle GST versions
 {% set version_arr = version.split(".") %}
@@ -23,7 +23,7 @@ build:
     - gst-plugins-base
     - libcxx  # [osx]
     - libstdcxx-ng  # [linux]
-  number: 2
+  number: 0
   skip: true  # [python_impl != 'cpython']
 
 requirements:
