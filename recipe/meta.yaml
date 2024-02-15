@@ -1,6 +1,6 @@
 {% set name = "gst-python" %}
-{% set version = "1.22.9" %}
-{% set sha256 = "3f9d5c6ffefda268703744b592a6b3983aa6723273b1220ecbcb62c2a5800009" %}
+{% set version = "1.23.2" %}
+{% set sha256 = "53c64354a6cb4374347fc390b991b6025b93b16a8ef70ad764836f372697cf76" %}
 
 # handle GST versions
 {% set version_arr = version.split(".") %}
