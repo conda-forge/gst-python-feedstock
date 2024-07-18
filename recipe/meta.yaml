@@ -13,9 +13,6 @@ package:
 source:
   url: https://gstreamer.freedesktop.org/src/{{ name }}/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
-  patches:
-    # see https://gitlab.freedesktop.org/gstreamer/gst-python/-/merge_requests/41
-    - overlinking.patch
 
 build:
   ignore_run_exports:
