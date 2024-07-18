@@ -1,6 +1,6 @@
 {% set name = "gst-python" %}
-{% set version = "1.22.9" %}
-{% set sha256 = "3f9d5c6ffefda268703744b592a6b3983aa6723273b1220ecbcb62c2a5800009" %}
+{% set version = "1.24.3" %}
+{% set sha256 = "ecdb3e2ba94ea2c82b93a8c715d5a7e04f9726a8838c0a6b17694928fd1e8595" %}
 
 # handle GST versions
 {% set version_arr = version.split(".") %}
@@ -23,7 +23,7 @@ build:
     - gst-plugins-base
     - libcxx  # [osx]
     - libstdcxx-ng  # [linux]
-  number: 1
+  number: 0
   skip: true  # [python_impl != 'cpython']
 
 requirements:
@@ -31,7 +31,7 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
     - {{ cdt('libxau-devel') }}          # [linux]
     - {{ cdt('libxext-devel') }}         # [linux]
