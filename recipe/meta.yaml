@@ -49,8 +49,6 @@ requirements:
     - {{ cdt('libselinux-devel') }}      # [linux]
     - pkg-config
     - meson
-    # see https://github.com/mesonbuild/meson/issues/7611
-    - meson !=0.56.*  # [win]
     - ninja
   host:
     - gstreamer
