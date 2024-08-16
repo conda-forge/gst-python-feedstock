@@ -13,11 +13,11 @@ source:
   sha256: 692e88820e097b30e5f92d37d0955c709a0a17b27f874a1907405244825bd700
 
 build:
+  ignore_run_exports_from:
+    - {{ compiler('cxx') }}
   ignore_run_exports:
     # required by meson, but not actually used
     - gst-plugins-base
-    - libcxx  # [osx]
-    - libstdcxx-ng  # [linux]
   number: 0
   skip: true  # [python_impl != 'cpython']
 
