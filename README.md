@@ -9,7 +9,7 @@ Package license: LGPL-2.1-or-later
 
 Summary: GStreamer Python binding overrides
 
-Development: https://gitlab.freedesktop.org/gstreamer/gst-python
+Development: https://gitlab.freedesktop.org/gstreamer/gstreamer
 
 GStreamer Python binding overrides
 
