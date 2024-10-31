@@ -1,4 +1,4 @@
-{% set version = "1.24.8" %}
+{% set version = "1.24.9" %}
 
 # handle GST versions
 {% set version_arr = version.split(".") %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-{{ version }}.tar.xz
-  sha256: 0663d0d13f2692f573179c97b7c84e22600d14a2af757fc1740c7c4a3434c7fe
+  sha256: 80e61d587c34cbac79e46c927b71cf32c4bf9bb0868ce5aa4b7444bdad83f42e
 
 build:
   ignore_run_exports_from:
@@ -18,7 +18,7 @@ build:
   ignore_run_exports:
     # required by meson, but not actually used
     - gst-plugins-base
-  number: 1
+  number: 0
   skip: true  # [python_impl != 'cpython']
 
 requirements:
