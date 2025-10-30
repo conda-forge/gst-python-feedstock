@@ -18,7 +18,7 @@ build:
   ignore_run_exports:
     # required by meson, but not actually used
     - gst-plugins-base
-  number: 3
+  number: 4
   skip: true  # [python_impl != 'cpython']
 
 requirements:
@@ -55,7 +55,7 @@ requirements:
     - meson
     - ninja
   host:
-    - gstreamer >=1.24, <1.27
+    - gstreamer >=1.24,<1.27
     - gstreamer {{ gst_version }}
     - gst-plugins-base {{ gst_version }}
     - glib
