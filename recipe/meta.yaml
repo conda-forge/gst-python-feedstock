@@ -18,7 +18,7 @@ build:
   ignore_run_exports:
     # required by meson, but not actually used
     - gst-plugins-base
-  number: 5
+  number: 6
   skip: true  # [python_impl != 'cpython']
 
 requirements:
@@ -40,14 +40,10 @@ requirements:
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - {{ cdt('mesa-dri-drivers') }}      # [linux]
     # These dependencies are only for cos7 platforms
-    - {{ cdt('libglvnd-glx') }}          # [linux and ppc64le]
-    - {{ cdt('libglvnd-glx') }}          # [linux and aarch64]
-    - {{ cdt('libglvnd') }}              # [linux and ppc64le]
-    - {{ cdt('libglvnd') }}              # [linux and aarch64]
-    - {{ cdt('libxshmfence-devel') }}    # [linux and ppc64le]
-    - {{ cdt('libxshmfence-devel') }}    # [linux and aarch64]
-    - {{ cdt('mesa-khr-devel') }}        # [linux and ppc64le]
-    - {{ cdt('mesa-khr-devel') }}        # [linux and aarch64]
+    - {{ cdt('libglvnd-glx') }}          # [linux and (ppc64le or aarch64)]
+    - {{ cdt('libglvnd') }}              # [linux and (ppc64le or aarch64)]
+    - {{ cdt('libxshmfence-devel') }}    # [linux and (ppc64le or aarch64)]
+    - {{ cdt('mesa-khr-devel') }}        # [linux and (ppc64le or aarch64)]
     # expat here is _only_ required for mesa-dri-drivers
     - {{ cdt('expat') }}                 # [linux]
     - {{ cdt('libselinux-devel') }}      # [linux]
