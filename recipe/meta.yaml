@@ -1,4 +1,4 @@
-{% set version = "1.24.11" %}
+{% set version = "1.26.6" %}
 
 # handle GST versions
 {% set version_arr = version.split(".") %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-{{ version }}.tar.xz
-  sha256: f4c8761bfee98508f57e2efd738ef36a99e2f7644860877d54d235a7092cf056
+  sha256: a4b5bfe039b7267fe8cdd48d106ab20cf88cda600f800d84f3d07724079edf1f
 
 build:
   ignore_run_exports_from:
@@ -40,10 +40,10 @@ requirements:
     - {{ cdt('libxxf86vm-devel') }}      # [linux]
     - {{ cdt('mesa-dri-drivers') }}      # [linux]
     # These dependencies are only for cos7 platforms
-    - {{ cdt('libglvnd-glx') }}          # [linux & (ppc64le | aarch64)]
-    - {{ cdt('libglvnd') }}              # [linux & (ppc64le | aarch64)]
-    - {{ cdt('libxshmfence-devel') }}    # [linux & (ppc64le | aarch64)]
-    - {{ cdt('mesa-khr-devel') }}        # [linux & (ppc64le | aarch64)]
+    - {{ cdt('libglvnd-glx') }}          # [linux and (ppc64le or aarch64)]
+    - {{ cdt('libglvnd') }}              # [linux and (ppc64le or aarch64)]
+    - {{ cdt('libxshmfence-devel') }}    # [linux and (ppc64le or aarch64)]
+    - {{ cdt('mesa-khr-devel') }}        # [linux and (ppc64le or aarch64)]
     # expat here is _only_ required for mesa-dri-drivers
     - {{ cdt('expat') }}                 # [linux]
     - {{ cdt('libselinux-devel') }}      # [linux]
