@@ -51,7 +51,6 @@ requirements:
     - meson
     - ninja
   host:
-    - gstreamer
     - gstreamer {{ gst_version }}
     - gst-plugins-base {{ gst_version }}
     - glib
