@@ -11,9 +11,9 @@ cxx_compiler:
 glib:
 - '2'
 gst_plugins_base:
-- '1.24'
+- '1.26'
 gstreamer:
-- '1.24'
+- '1.26'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -24,3 +24,5 @@ python_impl:
 - cpython
 target_platform:
 - win-64
+zlib:
+- '1'
