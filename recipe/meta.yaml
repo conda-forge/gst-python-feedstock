@@ -1,4 +1,4 @@
-{% set version = "1.26.6" %}
+{% set version = "1.24.13" %}
 
 # handle GST versions
 {% set version_arr = version.split(".") %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-{{ version }}.tar.xz
-  sha256: a4b5bfe039b7267fe8cdd48d106ab20cf88cda600f800d84f3d07724079edf1f
+  sha256: abb9a1edc11d67a463b6cef7b74a8b10ea6c342760c012d597102a7bfb7e09da
 
 build:
   ignore_run_exports_from:
