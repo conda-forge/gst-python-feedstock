@@ -51,9 +51,9 @@ requirements:
     - meson
     - ninja
   host:
-    - gstreamer {{ version }}
-    - gst-plugins-base {{ version }}
-    - gst-plugins-bad {{ version }}
+    - gstreamer {{ gst_version }}
+    - gst-plugins-base {{ gst_version }}
+    - gst-plugins-bad {{ gst_version }}
     - glib
     - python
     - pygobject >=3.8
