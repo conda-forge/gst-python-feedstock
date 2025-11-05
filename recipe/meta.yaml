@@ -59,11 +59,12 @@ requirements:
     - pygobject >=3.8
     - setuptools
   run:
-    - gstreamer {{ version }}
-    - gst-plugins-base {{ version }}
-    - gst-plugins-bad {{ version }}
-#    - {{ pin_compatible('gstreamer') }}
-#    - {{ pin_compatible('gst-plugins-base') }}
+#    - gstreamer {{ version }}
+#    - gst-plugins-base {{ version }}
+#    - gst-plugins-bad {{ version }}
+    - {{ pin_compatible('gstreamer') }}
+    - {{ pin_compatible('gst-plugins-base') }}
+    - {{ pin_compatible('gst-plugins-bad') }}
     - python
     - pygobject
 
