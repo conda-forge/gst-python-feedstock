@@ -33,7 +33,7 @@ requirements:
     - {{ cdt('libx11-devel') }}          # [linux]
     - {{ cdt('libxrender-devel') }}      # [linux]
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - libgl-devel                        # [linux]
     - {{ cdt('libdrm-devel') }}          # [linux]
     - {{ cdt('libxdamage-devel') }}      # [linux]
     - {{ cdt('libxfixes-devel') }}       # [linux]
@@ -65,6 +65,7 @@ requirements:
     - {{ pin_compatible('gst-plugins-bad') }}
     - python
     - pygobject
+    - typing_extensions
 
 test:
   commands:
