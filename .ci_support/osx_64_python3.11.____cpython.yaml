@@ -21,9 +21,9 @@ cxx_compiler_version:
 glib:
 - '2'
 gst_plugins_base:
-- '1.26'
+- '1.28'
 gstreamer:
-- '1.26'
+- '1.28'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pin_run_as_build:
