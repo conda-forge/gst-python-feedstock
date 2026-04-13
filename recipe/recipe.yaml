@@ -1,0 +1,94 @@
+# handle GST versions
+schema_version: 1
+
+context:
+  version: "1.28.2"
+  version_arr: ${{ version | split(".") }}
+  gst_version: ${{ "." | join((version_arr[0], version_arr[1])) }}
+
+package:
+  name: gst-python
+  version: ${{ version }}
+
+source:
+  url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-${{ version }}.tar.xz
+  sha256: 12fdd8e19af97d797a6b2c195228e6c9edc4cddfa68274912b78ef66068ad822
+
+build:
+  number: 1
+  skip: python_impl != 'cpython'
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - if: linux
+      then: libgl-devel
+    # These dependencies are only for cos7 platforms
+    # expat here is _only_ required for mesa-dri-drivers
+    - pkg-config
+    - meson
+    - ninja
+  host:
+    - gstreamer 1.28.2.*
+    - gst-plugins-base 1.28.2.*
+    - gst-plugins-bad 1.28.2.*
+    - glib
+    - python
+    - pygobject >=3.8
+    - setuptools
+    - zlib
+    - if: linux
+      then: 
+        - xorg-libxau
+        - xorg-libxext
+        - xorg-libx11
+        - xorg-libxrender
+        - xorg-xorgproto
+        - libdrm
+        - xorg-libxdamage
+        - xorg-libxfixes
+        - xorg-libxxf86vm
+    - if: ppc64le or aarch64
+      then: 
+        - xorg-libxshmfence
+        - libgl-devel
+  run:
+    - ${{ pin_compatible('gstreamer') }}
+    - ${{ pin_compatible('gst-plugins-base') }}
+    - ${{ pin_compatible('gst-plugins-bad') }}
+    - python
+    - pygobject
+    - typing_extensions
+  ignore_run_exports:
+    by_name:
+      - gst-plugins-base
+    from_package:
+      - ${{ compiler('cxx') }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -f $PREFIX/lib/gstreamer-1.0/libgstpython${SHLIB_EXT}
+      - if: win
+        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstpython.dll exit 1
+      - gst-inspect-1.0 --plugin python
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: COPYING
+  summary: GStreamer Python binding overrides
+  description: GStreamer Python binding overrides
+  homepage: http://gstreamer.freedesktop.org/modules/gst-python.html
+  repository: https://gitlab.freedesktop.org/gstreamer/gstreamer
+
+extra:
+  recipe-maintainers:
+    - tjwilli58
+    - duncanmmacleod
+    - tschoonj
