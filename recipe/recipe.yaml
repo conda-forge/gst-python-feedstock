@@ -1,0 +1,98 @@
+# handle GST versions
+schema_version: 1
+
+context:
+  version: "1.26.11"
+  version_arr: ${{ version | split(".") }}
+  gst_version: ${{ "." | join((version_arr[0], version_arr[1])) }}
+
+package:
+  name: gst-python
+  version: ${{ version }}
+
+source:
+  url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-${{ version }}.tar.xz
+  sha256: 11316ba769b56d26d8b1464c7198a9924caeae48134f7db59171faf1a73dc436
+
+build:
+  number: 1
+  skip: python_impl != 'cpython'
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - if: linux
+      then: 
+        - ${{ cdt('libxau-devel') }}
+        - ${{ cdt('libxext-devel') }}
+        - ${{ cdt('libx11-devel') }}
+        - ${{ cdt('libxrender-devel') }}
+        - ${{ cdt('xorg-x11-proto-devel') }}
+        - libgl-devel
+        - ${{ cdt('libdrm-devel') }}
+        - ${{ cdt('libxdamage-devel') }}
+        - ${{ cdt('libxfixes-devel') }}
+        - ${{ cdt('libxxf86vm-devel') }}
+        - ${{ cdt('mesa-dri-drivers') }}
+        # expat here is _only_ required for mesa-dri-drivers
+        - ${{ cdt('expat') }}
+        - ${{ cdt('libselinux-devel') }}
+    # These dependencies are only for cos7 platforms
+    - if: ppc64le or aarch64
+      then: 
+        - ${{ cdt('libglvnd-glx') }}
+        - ${{ cdt('libglvnd') }}
+        - ${{ cdt('libxshmfence-devel') }}
+        - ${{ cdt('mesa-khr-devel') }}
+    - pkg-config
+    - meson
+    - ninja
+  host:
+    - gstreamer 1.26.11.*
+    - gst-plugins-base 1.26.11.*
+    - gst-plugins-bad 1.26.11.*
+    - glib
+    - python
+    - pygobject >=3.8
+    - setuptools
+    - zlib
+  run:
+    - ${{ pin_compatible('gstreamer') }}
+    - ${{ pin_compatible('gst-plugins-base') }}
+    - ${{ pin_compatible('gst-plugins-bad') }}
+    - python
+    - pygobject
+    - typing_extensions
+  ignore_run_exports:
+    by_name:
+      - gst-plugins-base
+    from_package:
+      - ${{ compiler('cxx') }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -f $PREFIX/lib/gstreamer-1.0/libgstpython${SHLIB_EXT}
+      - if: win
+        then: if not exist %LIBRARY_LIB%\\gstreamer-1.0\\gstpython.dll exit 1
+      - gst-inspect-1.0 --plugin python
+
+about:
+  license: LGPL-2.1-or-later
+  license_file: COPYING
+  summary: GStreamer Python binding overrides
+  description: GStreamer Python binding overrides
+  homepage: http://gstreamer.freedesktop.org/modules/gst-python.html
+  repository: https://gitlab.freedesktop.org/gstreamer/gstreamer
+
+extra:
+  recipe-maintainers:
+    - tjwilli58
+    - duncanmmacleod
+    - tschoonj
