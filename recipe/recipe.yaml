@@ -28,41 +28,28 @@ requirements:
     - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
     - if: linux
-      then: ${{ cdt('libxau-devel') }}
-    - if: linux
-      then: ${{ cdt('libxext-devel') }}
-    - if: linux
-      then: ${{ cdt('libx11-devel') }}
-    - if: linux
-      then: ${{ cdt('libxrender-devel') }}
-    - if: linux
-      then: ${{ cdt('xorg-x11-proto-devel') }}
-    - if: linux
-      then: libgl-devel
-    - if: linux
-      then: ${{ cdt('libdrm-devel') }}
-    - if: linux
-      then: ${{ cdt('libxdamage-devel') }}
-    - if: linux
-      then: ${{ cdt('libxfixes-devel') }}
-    - if: linux
-      then: ${{ cdt('libxxf86vm-devel') }}
-    - if: linux
-      then: ${{ cdt('mesa-dri-drivers') }}
+      then: 
+        - ${{ cdt('libxau-devel') }}
+        - ${{ cdt('libxext-devel') }}
+        - ${{ cdt('libx11-devel') }}
+        - ${{ cdt('libxrender-devel') }}
+        - ${{ cdt('xorg-x11-proto-devel') }}
+        - libgl-devel
+        - ${{ cdt('libdrm-devel') }}
+        - ${{ cdt('libxdamage-devel') }}
+        - ${{ cdt('libxfixes-devel') }}
+        - ${{ cdt('libxxf86vm-devel') }}
+        - ${{ cdt('mesa-dri-drivers') }}
+        # expat here is _only_ required for mesa-dri-drivers
+        - ${{ cdt('expat') }}
+        - ${{ cdt('libselinux-devel') }}
     # These dependencies are only for cos7 platforms
-    - if: linux and (ppc64le or aarch64)
-      then: ${{ cdt('libglvnd-glx') }}
-    - if: linux and (ppc64le or aarch64)
-      then: ${{ cdt('libglvnd') }}
-    - if: linux and (ppc64le or aarch64)
-      then: ${{ cdt('libxshmfence-devel') }}
-    - if: linux and (ppc64le or aarch64)
-      then: ${{ cdt('mesa-khr-devel') }}
-    # expat here is _only_ required for mesa-dri-drivers
-    - if: linux
-      then: ${{ cdt('expat') }}
-    - if: linux
-      then: ${{ cdt('libselinux-devel') }}
+    - if: ppc64le or aarch64
+      then: 
+        - ${{ cdt('libglvnd-glx') }}
+        - ${{ cdt('libglvnd') }}
+        - ${{ cdt('libxshmfence-devel') }}
+        - ${{ cdt('mesa-khr-devel') }}
     - pkg-config
     - meson
     - ninja
