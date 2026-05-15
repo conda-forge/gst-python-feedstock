@@ -37,7 +37,7 @@ requirements:
   host:
     - gstreamer ==${{ version }}
     - gst-plugins-base ==${{ version }}
-    - gst-plugins-bad 1.28.2.*
+    - gst-plugins-bad ==${{ version }}
     - glib
     - python
     - pygobject >=3.8
