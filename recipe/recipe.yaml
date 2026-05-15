@@ -35,7 +35,7 @@ requirements:
     - meson
     - ninja
   host:
-    - gstreamer 1.28.2.*
+    - gstreamer ==${{ version }}
     - gst-plugins-base 1.28.2.*
     - gst-plugins-bad 1.28.2.*
     - glib
