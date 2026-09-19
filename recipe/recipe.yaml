@@ -40,6 +40,7 @@ requirements:
     - gst-plugins-bad ==${{ version }}
     - glib
     - python
+    - libpython # needed for python3.5+
     - pygobject >=3.8
     - setuptools
     - zlib
