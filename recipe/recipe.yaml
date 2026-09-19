@@ -15,7 +15,7 @@ source:
   sha256: 9c23c5dddfd2c9b94bb1b4e4f5b90ebc6400d84277c77cf91b1dbdb4a8b451f9
 
 build:
-  number: 0
+  number: 2
   skip: python_impl != 'cpython'
 
 requirements:
@@ -40,6 +40,7 @@ requirements:
     - gst-plugins-bad ==${{ version }}
     - glib
     - python
+    - libpython # needed for python3.5+
     - pygobject >=3.8
     - setuptools
     - zlib
