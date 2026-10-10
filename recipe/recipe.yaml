@@ -2,7 +2,7 @@
 schema_version: 1
 
 context:
-  version: "1.28.7"
+  version: "1.28.8"
   version_arr: ${{ version | split(".") }}
   gst_version: ${{ "." | join((version_arr[0], version_arr[1])) }}
 
@@ -12,10 +12,10 @@ package:
 
 source:
   url: https://gstreamer.freedesktop.org/src/gst-python/gst-python-${{ version }}.tar.xz
-  sha256: 9c23c5dddfd2c9b94bb1b4e4f5b90ebc6400d84277c77cf91b1dbdb4a8b451f9
+  sha256: 6e0d8dd920234b9feeb86003d8f43c1996491f9d8190882329bf56f60a70206e
 
 build:
-  number: 2
+  number: 0
   skip: python_impl != 'cpython'
 
 requirements:
